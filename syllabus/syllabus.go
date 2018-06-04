@@ -9,8 +9,8 @@ import (
 )
 
 type Syllabus struct {
-	ID           objectid.ObjectID `bson:"_id,omitempty"`
-	SyllabusName string            `bson:"syllabusName,omitempty"`
+	ID   objectid.ObjectID `bson:"_id,omitempty"`
+	Name string            `bson:"name,omitempty"`
 }
 
 func SyllabusNotExist(db *mongo.Database, name string) (*Syllabus, bool) {
@@ -19,7 +19,7 @@ func SyllabusNotExist(db *mongo.Database, name string) (*Syllabus, bool) {
 	err := syllabus.FindOne(
 		context.Background(),
 		bson.NewDocument(
-			bson.EC.String("syllabusName", name),
+			bson.EC.String("name", name),
 		),
 	).Decode(&result)
 	if err != nil {
@@ -32,7 +32,7 @@ func InsertSyllabus(db *mongo.Database, syllabus Syllabus) {
 	_, err := courses.InsertOne(
 		context.Background(),
 		bson.NewDocument(
-			bson.EC.String("syllabusName", syllabus.SyllabusName),
+			bson.EC.String("name", syllabus.Name),
 		),
 	)
 	if err != nil {
@@ -45,7 +45,7 @@ func AddTeacher(db *mongo.Database, syllabusName string, teacherID string) {
 	syllabus.FindOneAndUpdate(
 		context.Background(),
 		bson.NewDocument(
-			bson.EC.String("syllabusName", syllabusName),
+			bson.EC.String("name", syllabusName),
 		),
 		bson.NewDocument(
 			bson.EC.SubDocumentFromElements("$push", bson.EC.String("teachers", teacherID)),
@@ -57,7 +57,7 @@ func AddCourse(db *mongo.Database, syllabusName string, courseID string) {
 	syllabus.FindOneAndUpdate(
 		context.Background(),
 		bson.NewDocument(
-			bson.EC.String("syllabusName", syllabusName),
+			bson.EC.String("name", syllabusName),
 		),
 		bson.NewDocument(
 			bson.EC.SubDocumentFromElements("$push", bson.EC.String("courses", courseID)),

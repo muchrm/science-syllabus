@@ -18,7 +18,7 @@ func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
 				InsertSyllabus(
 					db,
 					Syllabus{
-						SyllabusName: syllabusName,
+						Name: syllabusName,
 					},
 				)
 			}
