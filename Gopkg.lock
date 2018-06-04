@@ -2,6 +2,24 @@
 
 
 [[projects]]
+  name = "github.com/PuerkitoBio/goquery"
+  packages = ["."]
+  revision = "a86ea073017a6beddef78c8659e7224e8ca634b0"
+  version = "v1.4.0"
+
+[[projects]]
+  name = "github.com/andybalholm/cascadia"
+  packages = ["."]
+  revision = "901648c87902174f774fac311d7f176f8647bdaa"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/djimenez/iconv-go"
+  packages = ["."]
+  revision = "8960e66bd3dacbc8773962b40eb82fc18c63c127"
+
+[[projects]]
   name = "github.com/go-stack/stack"
   packages = ["."]
   revision = "259ab82a6cad3992b4e21ff5cac294ccb06474bc"
@@ -56,7 +74,11 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context"]
+  packages = [
+    "context",
+    "html",
+    "html/atom"
+  ]
   revision = "1e491301e022f8f977054da4c2d852decd59571f"
 
 [[projects]]
@@ -68,6 +90,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "da3e3de895068f730d48b59d9423472d93f84a8a4da9f764ca5256ef039b5775"
+  inputs-digest = "e92d8418a19341a463443f0579ba91b9960602892e3db1e53b1224d2bf472a95"
   solver-name = "gps-cdcl"
   solver-version = 1

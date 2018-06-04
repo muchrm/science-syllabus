@@ -2,6 +2,7 @@ package teacher
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/muchrm/science-syllabus/syllabus"
@@ -13,22 +14,18 @@ import (
 )
 
 func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
-	for _, row := range sheet.Rows[1:] {
+	for index, row := range sheet.Rows[1:] {
+		log.Printf("insert teacher row:%d\n", index)
 		if len(row.Cells[0].String()) > 0 {
 			text := util.RemovePrefix(row.Cells[2].String(), config.GetPrefixs())
 			name := strings.Split(text, " ")
-			// fmt.Printf("%s %s %s %s\n ", row.Cells[0].String(), row.Cells[1].String(), name[0], name[1])
-			teacher, notExist := TeacherNotExist(db, Teacher{OfficerName: name[0], OfficerSurname: name[1]})
+			teacher, notExist := TeacherNotExist(db, Teacher{OfficerName: name[0], OfficerSurname: strings.Join(name[1:], " ")})
 			if notExist == true {
-				InsertTeacher(
-					db,
-					Teacher{OfficerName: name[0], OfficerSurname: name[1]},
-				)
-				teacher, _ = TeacherNotExist(db, Teacher{OfficerName: name[0], OfficerSurname: name[1]})
+				log.Println(fmt.Sprintf("'%s' '%s' not a teacher", name[0], name[1]))
+			} else {
+				syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", row.Cells[0].String(), row.Cells[1].String())
+				syllabus.AddTeacher(db, syllabusName, teacher.ID.Hex())
 			}
-			// fmt.Println(teacher)
-			syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", row.Cells[0].String(), row.Cells[1].String())
-			syllabus.AddTeacher(db, syllabusName, teacher.ID.Hex())
 		} else {
 			break
 		}

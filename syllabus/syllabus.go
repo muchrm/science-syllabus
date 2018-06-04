@@ -13,9 +13,9 @@ type Syllabus struct {
 	SyllabusName string            `bson:"syllabusName,omitempty"`
 }
 
-func SyllabusNotExist(db *mongo.Database, name string) (Syllabus, bool) {
+func SyllabusNotExist(db *mongo.Database, name string) (*Syllabus, bool) {
 	syllabus := db.Collection("syllabus")
-	result := Syllabus{}
+	var result Syllabus
 	err := syllabus.FindOne(
 		context.Background(),
 		bson.NewDocument(
@@ -23,9 +23,9 @@ func SyllabusNotExist(db *mongo.Database, name string) (Syllabus, bool) {
 		),
 	).Decode(&result)
 	if err != nil {
-		return result, true
+		return nil, true
 	}
-	return result, false
+	return &result, false
 }
 func InsertSyllabus(db *mongo.Database, syllabus Syllabus) {
 	courses := db.Collection("syllabus")
