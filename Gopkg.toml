@@ -25,6 +25,22 @@
 #   unused-packages = true
 
 
+[[constraint]]
+  name = "github.com/PuerkitoBio/goquery"
+  version = "1.4.0"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/djimenez/iconv-go"
+
+[[constraint]]
+  name = "github.com/mongodb/mongo-go-driver"
+  version = "0.0.6"
+
+[[constraint]]
+  name = "github.com/tealeg/xlsx"
+  version = "1.0.3"
+
 [prune]
   go-tests = true
   unused-packages = true

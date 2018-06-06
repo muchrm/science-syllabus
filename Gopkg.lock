@@ -69,7 +69,7 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["pbkdf2"]
-  revision = "df8d4716b3472e4a531c33cedbe537dae921a1a9"
+  revision = "b47b1587369238182299fe4dad77d05b8b461e06"
 
 [[projects]]
   branch = "master"
@@ -90,6 +90,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e92d8418a19341a463443f0579ba91b9960602892e3db1e53b1224d2bf472a95"
+  inputs-digest = "6a2c3f3d5610adcdc5b18f2b47fd4dc1bfe46dd61ce5d56f419aa80d25007bc1"
   solver-name = "gps-cdcl"
   solver-version = 1
