@@ -41,12 +41,12 @@ func ConnectMongo() (*mongo.Database, func()) {
 
 //GetMainUrl คืนค่า url หลัก
 func GetMainURL() string {
-	return "http://reg.buu.ac.th/registrar/"
+	return "http://10.5.1.174/registrar/"
 }
 
 //GetURL สร้างurl สำหรับ ปี เทอมปัจจุบัน
 func GetURL(courseCode int, year int, semester int) string {
-	URL := "http://reg.buu.ac.th/registrar/class_info_1.asp?coursestatus=O00&facultyid=all&maxrow=1&acadyear=$year&semester=$semester&CAMPUSID=&LEVELID=&coursecode=$courseCode&coursename=&cmd=2"
+	URL := "http://10.5.1.174/registrar/class_info_1.asp?coursestatus=O00&facultyid=all&maxrow=1&acadyear=$year&semester=$semester&CAMPUSID=&LEVELID=&coursecode=$courseCode&coursename=&cmd=2"
 	URL = strings.Replace(URL, "$year", strconv.Itoa(year), 1)
 	URL = strings.Replace(URL, "$semester", strconv.Itoa(semester), 1)
 	URL = strings.Replace(URL, "$courseCode", strconv.Itoa(courseCode), 1)

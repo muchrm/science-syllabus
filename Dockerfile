@@ -1,4 +1,4 @@
-FROM golang:alpine3.6 AS builder
+FROM golang:alpine3.7 AS builder
 
 RUN apk update; apk add --no-cache --virtual .run-deps \
     bash wget git openssl gcc musl-dev
@@ -8,7 +8,7 @@ COPY . .
 RUN dep ensure
 RUN go build -o app
 
-FROM alpine:3.6
+FROM alpine:3.7
 RUN apk update; apk add --no-cache --virtual .run-deps \
     openssl
 WORKDIR /app
