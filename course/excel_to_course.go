@@ -22,7 +22,7 @@ func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
 			if notExist == true {
 				courseCode, _ := row.Cells[3].Int()
 				var doc *goquery.Document
-				for _, year := range []int{2559, 2560} {
+				for _, year := range []int{2554, 2555, 2556, 2557, 2558, 2559, 2560} {
 					for _, semester := range []int{1, 2, 3} {
 						url := config.GetURL(courseCode, year, semester)
 						doc = util.GetDocumentFromURL(url)
@@ -46,7 +46,7 @@ func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
 				syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", row.Cells[0].String(), row.Cells[1].String())
 				syllabus.AddCourse(db, syllabusName, course.ID.Hex())
 			} else {
-				log.Printf("course %s not found on reg 2559-2560", row.Cells[3].String())
+				log.Printf("course %s not found on reg 2554-2560", row.Cells[3].String())
 			}
 
 		} else {
