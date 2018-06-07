@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/muchrm/science-syllabus/config"
+	"github.com/muchrm/science-syllabus/syllabus"
 	"github.com/muchrm/science-syllabus/teacher"
 	"github.com/muchrm/science-syllabus/util"
 
@@ -26,8 +27,8 @@ func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
 			} else {
 				name := util.RemovePrefix(row.Cells[2].String(), []string{" สาขาวิชา"})
 				name = util.TranferSyllabusToFull(name)
-				log.Println(fmt.Sprintf("can insert %s %s", teacher.ID.Hex(), name))
-				// syllabus.AddChairman(db, name, teacher.ID.Hex())
+				// log.Println(fmt.Sprintf("can insert %s %s", teacher.ID.Hex(), name))
+				syllabus.AddChairman(db, name, teacher.ID.Hex())
 			}
 		} else {
 			break
