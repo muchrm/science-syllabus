@@ -52,6 +52,18 @@ func AddTeacher(db *mongo.Database, syllabusName string, teacherID string) {
 		),
 	)
 }
+func AddChairman(db *mongo.Database, syllabusName string, teacherID string) {
+	syllabus := db.Collection("syllabus")
+	syllabus.FindOneAndUpdate(
+		context.Background(),
+		bson.NewDocument(
+			bson.EC.String("name", syllabusName),
+		),
+		bson.NewDocument(
+			bson.EC.SubDocumentFromElements("$push", bson.EC.String("chairmans", teacherID)),
+		),
+	)
+}
 func AddCourse(db *mongo.Database, syllabusName string, courseID string) {
 	syllabus := db.Collection("syllabus")
 	syllabus.FindOneAndUpdate(

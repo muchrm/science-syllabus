@@ -55,6 +55,12 @@ func GetDocumentFromURL(URL string) *goquery.Document {
 	}
 	return doc
 }
+func TranferSyllabusToFull(syllabus string) string {
+	syllabus = strings.Replace(syllabus, "วท.บ.", "หลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชา", -1)
+	syllabus = strings.Replace(syllabus, "วท.ม.", "หลักสูตรวิทยาศาสตรมหาบัณฑิต สาขาวิชา", -1)
+	syllabus = strings.Replace(syllabus, "ปร.ด.", "หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชา", -1)
+	return syllabus
+}
 
 //GetBodyString แปลง http body เป็น format utf-8 และ คัดลอกไปยังreader
 func GetBodyString(url string) (io.Reader, error) {
