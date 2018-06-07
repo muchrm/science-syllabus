@@ -6,6 +6,7 @@ import (
 	"github.com/muchrm/science-syllabus/chairman"
 	"github.com/muchrm/science-syllabus/config"
 	"github.com/muchrm/science-syllabus/course"
+	"github.com/muchrm/science-syllabus/syllabus"
 	"github.com/muchrm/science-syllabus/teacher"
 	"github.com/tealeg/xlsx"
 )
