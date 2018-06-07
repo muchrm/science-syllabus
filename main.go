@@ -41,7 +41,7 @@ func main() {
 	log.Println("*-----------------------------------Insert course 6 syllabus-----------------------------------*")
 	course.FromExcel(db, xlFile2.Sheets[11])
 	log.Println("*-----------------------------------Insert chairman 1 -----------------------------------*")
-	course.FromExcel(db, xlFile2.Sheets[6])
-	log.Println("*-----------------------------------Insert chairman 2 -----------------------------------*")
 	course.FromExcel(db, xlFile2.Sheets[7])
+	log.Println("*-----------------------------------Insert chairman 2 -----------------------------------*")
+	course.FromExcel(db, xlFile2.Sheets[8])
 }
