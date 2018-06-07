@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 
+	"github.com/muchrm/science-syllabus/chairman"
+
 	syllabus "github.com/muchrm/science-syllabus/chairman"
 	"github.com/muchrm/science-syllabus/config"
 	"github.com/muchrm/science-syllabus/course"
@@ -41,7 +43,7 @@ func main() {
 	log.Println("*-----------------------------------Insert course 6 syllabus-----------------------------------*")
 	course.FromExcel(db, xlFile2.Sheets[11])
 	log.Println("*-----------------------------------Insert chairman 1 -----------------------------------*")
-	course.FromExcel(db, xlFile2.Sheets[7])
+	chairman.FromExcel(db, xlFile2.Sheets[7])
 	log.Println("*-----------------------------------Insert chairman 2 -----------------------------------*")
-	course.FromExcel(db, xlFile2.Sheets[8])
+	chairman.FromExcel(db, xlFile2.Sheets[8])
 }
