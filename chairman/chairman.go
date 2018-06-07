@@ -1,4 +1,4 @@
-package syllabus
+package chairman
 
 import (
 	"fmt"
