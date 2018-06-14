@@ -43,7 +43,7 @@ func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
 				}
 			}
 			if course != nil {
-				syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", row.Cells[0].String(), row.Cells[1].String())
+				syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", util.StripSpace(row.Cells[0].String()), util.StripSpace(row.Cells[1].String()))
 				syllabus.AddCourse(db, syllabusName, course.ID.Hex())
 			} else {
 				log.Printf("course %s not found on reg 2554-2560", row.Cells[3].String())

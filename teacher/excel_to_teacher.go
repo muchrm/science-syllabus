@@ -23,7 +23,7 @@ func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
 			if notExist == true {
 				log.Println(fmt.Sprintf("'%s' '%s' not a teacher", name[0], name[1]))
 			} else {
-				syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", row.Cells[0].String(), row.Cells[1].String())
+				syllabusName := fmt.Sprintf("หลักสูตร%s สาขาวิชา%s", util.StripSpace(row.Cells[0].String()), util.StripSpace(row.Cells[1].String()))
 				syllabus.AddTeacher(db, syllabusName, teacher.ID.Hex())
 			}
 		} else {
