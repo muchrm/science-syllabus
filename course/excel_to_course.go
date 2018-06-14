@@ -15,8 +15,8 @@ import (
 )
 
 func FromExcel(db *mongo.Database, sheet *xlsx.Sheet) {
-	for index, row := range sheet.Rows[1:] {
-		log.Printf("insert course row:%d\n", index)
+	for _, row := range sheet.Rows[1:] {
+		// log.Printf("insert course row:%d\n", index)
 		if len(row.Cells[0].String()) > 0 {
 			course, notExist := CourseNotExist(db, util.StringToInt(row.Cells[3].String()))
 			if notExist == true {

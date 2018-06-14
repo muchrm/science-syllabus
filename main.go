@@ -46,4 +46,5 @@ func main() {
 	chairman.FromExcel(db, xlFile2.Sheets[7])
 	log.Println("*-----------------------------------Insert chairman 2 -----------------------------------*")
 	chairman.FromExcel(db, xlFile2.Sheets[8])
+	log.Println("*----------------------------------- End -----------------------------------*")
 }

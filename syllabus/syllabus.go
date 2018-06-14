@@ -2,6 +2,7 @@ package syllabus
 
 import (
 	"context"
+	"log"
 
 	"github.com/mongodb/mongo-go-driver/bson"
 	"github.com/mongodb/mongo-go-driver/bson/objectid"
@@ -42,37 +43,53 @@ func InsertSyllabus(db *mongo.Database, syllabus Syllabus) {
 
 func AddTeacher(db *mongo.Database, syllabusName string, teacherID string) {
 	syllabus := db.Collection("syllabus")
-	syllabus.FindOneAndUpdate(
-		context.Background(),
-		bson.NewDocument(
-			bson.EC.String("name", syllabusName),
-		),
-		bson.NewDocument(
-			bson.EC.SubDocumentFromElements("$push", bson.EC.String("teachers", teacherID)),
-		),
-	)
+	_, notExist := SyllabusNotExist(db, syllabusName)
+	if notExist == true {
+		log.Printf("syllabus %s not exist", syllabusName)
+	} else {
+		syllabus.FindOneAndUpdate(
+			context.Background(),
+			bson.NewDocument(
+				bson.EC.String("name", syllabusName),
+			),
+			bson.NewDocument(
+				bson.EC.SubDocumentFromElements("$push", bson.EC.String("teachers", teacherID)),
+			),
+		)
+	}
 }
 func AddChairman(db *mongo.Database, syllabusName string, teacherID string) {
 	syllabus := db.Collection("syllabus")
-	syllabus.FindOneAndUpdate(
-		context.Background(),
-		bson.NewDocument(
-			bson.EC.String("name", syllabusName),
-		),
-		bson.NewDocument(
-			bson.EC.SubDocumentFromElements("$push", bson.EC.String("chairmans", teacherID)),
-		),
-	)
+	_, notExist := SyllabusNotExist(db, syllabusName)
+	if notExist == true {
+		log.Printf("syllabus %s not exist", syllabusName)
+	} else {
+		syllabus.FindOneAndUpdate(
+			context.Background(),
+			bson.NewDocument(
+				bson.EC.String("name", syllabusName),
+			),
+			bson.NewDocument(
+				bson.EC.SubDocumentFromElements("$push", bson.EC.String("chairmans", teacherID)),
+			),
+		)
+	}
 }
 func AddCourse(db *mongo.Database, syllabusName string, courseID string) {
 	syllabus := db.Collection("syllabus")
-	syllabus.FindOneAndUpdate(
-		context.Background(),
-		bson.NewDocument(
-			bson.EC.String("name", syllabusName),
-		),
-		bson.NewDocument(
-			bson.EC.SubDocumentFromElements("$push", bson.EC.String("courses", courseID)),
-		),
-	)
+	_, notExist := SyllabusNotExist(db, syllabusName)
+	if notExist == true {
+		log.Printf("syllabus %s not exist", syllabusName)
+	} else {
+		syllabus.FindOneAndUpdate(
+			context.Background(),
+			bson.NewDocument(
+				bson.EC.String("name", syllabusName),
+			),
+			bson.NewDocument(
+				bson.EC.SubDocumentFromElements("$push", bson.EC.String("courses", courseID)),
+			),
+		)
+	}
+
 }
